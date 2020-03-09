@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BingDailyImageParser:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/BingDailyImageParser_jar</output-path>
+    <root id="archive" name="BingDailyImageParser.jar">
+      <element id="module-output" name="BingDailyImageParser" />
+      <element id="extracted-dir" path="D:/ReferencedLibraries/jsoup-1.13.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/ReferencedLibraries/jna-5.5.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/ReferencedLibraries/jna-platform-5.5.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
