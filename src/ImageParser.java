@@ -2,7 +2,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import javax.net.ssl.SSLException;
 import java.io.*;
+import java.net.NoRouteToHostException;
 import java.net.URL;
 import java.net.UnknownHostException;
 
@@ -48,6 +51,14 @@ public class ImageParser {
 
             WallpaperChanger.changeWallpaper(imagePath);
 
+        } catch (SSLException ssl){
+            System.out.println("SSLException occurred");
+            Thread.sleep(10000);
+            parseImage();
+        } catch (NoRouteToHostException no){
+            System.out.println("NoRouteToHostException occurred");
+            Thread.sleep(10000);
+            parseImage();
         } catch (UnknownHostException e) {
             System.out.println("UnknownHostException occurred");
             Thread.sleep(10000);
