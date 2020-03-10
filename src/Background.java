@@ -25,7 +25,11 @@ public class Background {
 
         trayIcon.setPopupMenu(popup);
 
-        ImageParser.parseImage();
+        try {
+            ImageParser.parseImage();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         System.exit(1);
 

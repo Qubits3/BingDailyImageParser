@@ -4,10 +4,11 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.io.*;
 import java.net.URL;
+import java.net.UnknownHostException;
 
 public class ImageParser {
 
-    static void parseImage(){
+    static void parseImage() throws InterruptedException {
         try {
             Document doc = Jsoup.connect("https://www.bing.com/?toWww=1&redig=7D6D9A57DDD741A9A4C36F2CAB139296").get();
 
@@ -47,9 +48,12 @@ public class ImageParser {
 
             WallpaperChanger.changeWallpaper(imagePath);
 
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        } catch (UnknownHostException e) {
+            System.out.println("UnknownHostException occurred");
+            Thread.sleep(10000);
+            parseImage();
+        } catch (IOException ex){
+            ex.printStackTrace();
         }
     }
 
