@@ -3,10 +3,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Date;
 
 public class Background {
 
-    public static void main (String [] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         if (!SystemTray.isSupported()) {
             System.out.println("SystemTray is not supported");
             return;
@@ -29,6 +30,20 @@ public class Background {
         trayIcon.setPopupMenu(popup);
 
         try {
+            int currentHour = new Date(System.currentTimeMillis()).getHours();
+            int currentMinute = new Date(System.currentTimeMillis()).getMinutes();
+
+            int leftHour = 10 - currentHour;
+
+            if (leftHour >= 0) {
+                int newHourInMilliseconds = leftHour * 60 * 60 * 1000;
+                int newMinuteInMilliseconds = currentMinute * 60 * 1000;
+
+                int totalWaitTime = newHourInMilliseconds - newMinuteInMilliseconds;
+
+                Thread.sleep(totalWaitTime);
+            }
+
             ImageParser.parseImage();
         } catch (InterruptedException e) {
             e.printStackTrace();

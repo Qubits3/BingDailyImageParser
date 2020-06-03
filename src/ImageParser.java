@@ -64,7 +64,9 @@ public class ImageParser {
             Thread.sleep(10000);
             parseImage();
         } catch (IOException ex){
-            ex.printStackTrace();
+            System.out.println("IOException occurred");
+            Thread.sleep(10000);
+            parseImage();
         }
     }
 
