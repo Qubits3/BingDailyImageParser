@@ -35,7 +35,7 @@ public class Background {
 
             int leftHour = 10 - currentHour;
 
-            if (leftHour >= 0) {
+            if (leftHour > 0) {
                 int newHourInMilliseconds = leftHour * 60 * 60 * 1000;
                 int newMinuteInMilliseconds = currentMinute * 60 * 1000;
 
