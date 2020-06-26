@@ -41,8 +41,8 @@ public class ImageParser {
             byte[] response = out.toByteArray();
 
             String imageName = parsedLinks[1].substring(parsedLinks[1].indexOf("OHR") + 4, parsedLinks[1].indexOf("&") - 4);  //image name
-            //System.out.println(imageName);
-            //System.out.println(parsedLinks[1]);
+            
+            //Set your own path here
             String imagePath = "D:\\Programs\\WallpaperChanger\\" + imageName + ".jpg";
 
             FileOutputStream fos = new FileOutputStream(imagePath);
