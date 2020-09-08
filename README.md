@@ -1,3 +1,3 @@
 # Bing Daily Image Parser
 
-Downloads image from www.bing.com and sets as desktop background.
+**You have to change image location before to use it.
