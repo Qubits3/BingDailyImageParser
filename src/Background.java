@@ -39,7 +39,7 @@ public class Background {
                 int newHourInMilliseconds = leftHour * 60 * 60 * 1000;
                 int newMinuteInMilliseconds = currentMinute * 60 * 1000;
 
-                int totalWaitTime = newHourInMilliseconds - newMinuteInMilliseconds;
+                int totalWaitTime = newHourInMilliseconds - newMinuteInMilliseconds + 60000;
 
                 Thread.sleep(totalWaitTime);
             }
