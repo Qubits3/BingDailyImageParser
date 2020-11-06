@@ -19,7 +19,7 @@ public class ImageParser {
             String[] parsedLinks = new String[10];
             int i = 0;
             for (Element link : links){
-                parsedLinks[i] = link.attr("href").toString();
+                parsedLinks[i] = link.attr("href");
                 i++;
             }
 

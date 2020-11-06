@@ -13,33 +13,35 @@ public class Background {
             return;
         }
         //Image image = Toolkit.getDefaultToolkit().getImage("C:\\Users\\Metin\\Desktop\\icon.png");
-        Image image = ImageIO.read(Background.class.getResource("icon.jpg"));
+        Image image = ImageIO.read(Background.class.getResource("icon.png"));
 
         final PopupMenu popup = new PopupMenu();
         final TrayIcon trayIcon = new TrayIcon(image, "Wallpaper Changer", popup);
         final SystemTray tray = SystemTray.getSystemTray();
 
-        MenuItem exitItem = new MenuItem("Exit");
-        exitItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.exit(1);
-            }
-        });
+        MenuItem exitItem = new MenuItem("   Exit   ");
+        exitItem.addActionListener(e -> System.exit(1));
         popup.add(exitItem);
 
         trayIcon.setPopupMenu(popup);
 
         try {
+            tray.add(trayIcon);
+        } catch (AWTException e) {
+            System.out.println("TrayIcon could not be added.");
+        }
+
+        try {
             int currentHour = new Date(System.currentTimeMillis()).getHours();
             int currentMinute = new Date(System.currentTimeMillis()).getMinutes();
 
-            int leftHour = 10 - currentHour;
+            int leftHour = 11 - currentHour;
 
             if (leftHour > 0) {
                 int newHourInMilliseconds = leftHour * 60 * 60 * 1000;
                 int newMinuteInMilliseconds = currentMinute * 60 * 1000;
 
-                int totalWaitTime = newHourInMilliseconds - newMinuteInMilliseconds + 60000;
+                int totalWaitTime = newHourInMilliseconds - newMinuteInMilliseconds;
 
                 Thread.sleep(totalWaitTime);
             }
@@ -49,13 +51,8 @@ public class Background {
             e.printStackTrace();
         }
 
+        //Exit program when job finished
         System.exit(1);
-
-        try {
-            tray.add(trayIcon);
-        } catch (AWTException e) {
-            System.out.println("TrayIcon could not be added.");
-        }
     }
 
 }
