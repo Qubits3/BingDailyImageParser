@@ -24,7 +24,7 @@ public class ImageParser {
             }
 
             String imageLink = "https://www.bing.com" + parsedLinks[1];  //Reference to image link
-            //System.out.println(imageLink);
+            System.out.println(imageLink);
 
             URL url = new URL(imageLink);
 

@@ -35,7 +35,7 @@ public class Background {
             int currentHour = new Date(System.currentTimeMillis()).getHours();
             int currentMinute = new Date(System.currentTimeMillis()).getMinutes();
 
-            int leftHour = 11 - currentHour;
+            int leftHour = 10 - currentHour;    // Download image at 10 AM
 
             if (leftHour > 0) {
                 int newHourInMilliseconds = leftHour * 60 * 60 * 1000;
