@@ -2,7 +2,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 import javax.net.ssl.SSLException;
 import java.io.*;
 import java.net.NoRouteToHostException;
@@ -11,11 +10,16 @@ import java.net.UnknownHostException;
 
 public class ImageParser {
 
+    static String title = "";
+
     static void parseImage() throws InterruptedException {
         try {
-            Document doc = Jsoup.connect("https://www.bing.com/?toWww=1&redig=7D6D9A57DDD741A9A4C36F2CAB139296").get();
+            Document doc = Jsoup.connect("https://www.bing.com").get();
 
             Elements links = doc.select("head").select("link");
+
+            title = doc.getElementsByClass("title").text();
+
             String[] parsedLinks = new String[10];
             int i = 0;
             for (Element link : links){
@@ -31,7 +35,7 @@ public class ImageParser {
             InputStream in = new BufferedInputStream(url.openStream());
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             byte[] buf = new byte[1024];
-            int n = 0;
+            int n;
             while (-1!=(n=in.read(buf)))
             {
                 out.write(buf, 0, n);
