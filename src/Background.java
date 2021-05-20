@@ -1,5 +1,3 @@
-import com.sun.deploy.panel.JSmartTextArea;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +15,6 @@ public class Background {
             System.out.println("SystemTray is not supported");
             return;
         }
-        //Image image = Toolkit.getDefaultToolkit().getImage("C:\\Users\\Metin\\Desktop\\icon.png");
         Image image = ImageIO.read(Objects.requireNonNull(Background.class.getResource("icon.png")));
 
         final PopupMenu popup = new PopupMenu();
@@ -63,22 +60,23 @@ public class Background {
 //        System.exit(1);
     }
 
-    static void showTitle(){
+    static void showTitle() {
         JDialog jDialog = new JDialog();
+        jDialog.setLocationRelativeTo(jDialog);
         jDialog.setUndecorated(true);
         jDialog.setAlwaysOnTop(false);
         jDialog.setOpacity(0.5f);
         jDialog.getContentPane().setBackground(Color.BLACK);
         jDialog.setType(Window.Type.UTILITY);   // Hide the program from alt + tab
 
-        JTextArea jSmartTextArea = new JTextArea();
-        jSmartTextArea.setFont(new Font("Arial", Font.ITALIC, 16));
-        jSmartTextArea.setBackground(Color.BLACK);
-        jSmartTextArea.setForeground(Color.WHITE);
-        jSmartTextArea.setEditable(false);
-        jSmartTextArea.setText(" " + ImageParser.title + " ");
+        JTextArea jTextArea = new JTextArea();
+        jTextArea.setFont(new Font("Arial", Font.ITALIC, 16));
+        jTextArea.setBackground(Color.BLACK);
+        jTextArea.setForeground(Color.WHITE);
+        jTextArea.setEditable(false);
+        jTextArea.setText(" " + ImageParser.title + " ");
 
-        jSmartTextArea.addMouseListener(new MouseAdapter() {
+        jTextArea.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 System.exit(0);
@@ -86,13 +84,12 @@ public class Background {
         });
 
         // JDialog size and location
-        jDialog.setSize(jSmartTextArea.getPreferredSize().width + 20, jSmartTextArea.getPreferredSize().height + 20);
-//        jDialog.setLocation(1920 - jSmartTextArea.getPreferredSize().width, 1006);    // Use this on ide
-        jDialog.setLocation(1536 - jSmartTextArea.getPreferredSize().width, 806);   // Use this on package build
+        jDialog.setSize(jTextArea.getPreferredSize().width + 20, jTextArea.getPreferredSize().height + 20);
+        jDialog.setLocation(1536 - jTextArea.getPreferredSize().width, 805);
 
-        jDialog.add(jSmartTextArea);
+        System.out.println(Toolkit.getDefaultToolkit().getScreenSize());
+        jDialog.add(jTextArea);
         jDialog.pack();
-        // Show title
-        jDialog.setVisible(true);
+        jDialog.setVisible(true);   // Show title
     }
 }
