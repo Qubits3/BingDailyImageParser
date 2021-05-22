@@ -43,6 +43,8 @@ public class Background {
                 int newHourInMilliseconds = leftHour * 60 * 60 * 1000;
                 int newMinuteInMilliseconds = currentMinute * 60 * 1000;
 
+                showTitle();
+
                 int totalWaitTime = newHourInMilliseconds - newMinuteInMilliseconds;
 
                 Thread.sleep(totalWaitTime);
@@ -61,6 +63,8 @@ public class Background {
     }
 
     static void showTitle() {
+        ImageParser.parseTitle();
+
         JDialog jDialog = new JDialog();
         jDialog.setLocationRelativeTo(jDialog);
         jDialog.setUndecorated(true);
@@ -87,7 +91,9 @@ public class Background {
         jDialog.setSize(jTextArea.getPreferredSize().width + 20, jTextArea.getPreferredSize().height + 20);
         jDialog.setLocation(1536 - jTextArea.getPreferredSize().width, 805);
 
-        System.out.println(Toolkit.getDefaultToolkit().getScreenSize());
+        jDialog.remove(jTextArea);
+        jDialog.dispose();
+
         jDialog.add(jTextArea);
         jDialog.pack();
         jDialog.setVisible(true);   // Show title

@@ -18,8 +18,6 @@ public class ImageParser {
 
             Elements links = doc.select("head").select("link");
 
-            title = doc.getElementsByClass("title").text();
-
             String[] parsedLinks = new String[10];
             int i = 0;
             for (Element link : links){
@@ -74,4 +72,16 @@ public class ImageParser {
         }
     }
 
+    static void parseTitle(){
+        Document doc = null;
+        try {
+            doc = Jsoup.connect("https://www.bing.com").get();
+
+            Elements links = doc.select("head").select("link");
+
+            title = doc.getElementsByClass("title").text();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
