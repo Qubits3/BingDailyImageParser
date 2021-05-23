@@ -9,6 +9,9 @@ import java.util.Objects;
 
 public class Background {
 
+    static JDialog jDialog;
+    static JTextArea jTextArea;
+
     public static void main(String[] args) throws IOException {
 
         if (!SystemTray.isSupported()) {
@@ -50,9 +53,13 @@ public class Background {
                 Thread.sleep(totalWaitTime);
             }
 
-            ImageParser.parseImage();
+            jDialog.remove(jTextArea);
+            jDialog.setSize(0,0);
+            jDialog.revalidate();
+            jDialog.repaint();
 
             showTitle();
+
 
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -65,7 +72,7 @@ public class Background {
     static void showTitle() {
         ImageParser.parseTitle();
 
-        JDialog jDialog = new JDialog();
+        jDialog = new JDialog();
         jDialog.setLocationRelativeTo(jDialog);
         jDialog.setUndecorated(true);
         jDialog.setAlwaysOnTop(false);
@@ -73,7 +80,7 @@ public class Background {
         jDialog.getContentPane().setBackground(Color.BLACK);
         jDialog.setType(Window.Type.UTILITY);   // Hide the program from alt + tab
 
-        JTextArea jTextArea = new JTextArea();
+        jTextArea = new JTextArea();
         jTextArea.setFont(new Font("Arial", Font.ITALIC, 16));
         jTextArea.setBackground(Color.BLACK);
         jTextArea.setForeground(Color.WHITE);
@@ -91,10 +98,10 @@ public class Background {
         jDialog.setSize(jTextArea.getPreferredSize().width + 20, jTextArea.getPreferredSize().height + 20);
         jDialog.setLocation(1536 - jTextArea.getPreferredSize().width, 805);
 
-        jDialog.remove(jTextArea);
-        jDialog.dispose();
-
         jDialog.add(jTextArea);
+        jDialog.revalidate();
+        jDialog.repaint();
+
         jDialog.pack();
         jDialog.setVisible(true);   // Show title
     }
