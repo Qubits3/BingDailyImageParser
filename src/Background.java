@@ -14,6 +14,9 @@ public class Background {
 
     public static void main(String[] args) throws IOException {
 
+        jDialog = new JDialog();
+        jTextArea = new JTextArea();
+
         if (!SystemTray.isSupported()) {
             System.out.println("SystemTray is not supported");
             return;
@@ -57,6 +60,8 @@ public class Background {
             jDialog.setSize(0,0);
             jDialog.revalidate();
             jDialog.repaint();
+
+            ImageParser.parseImage();
 
             showTitle();
 
