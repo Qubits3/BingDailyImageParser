@@ -2,6 +2,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
 import javax.net.ssl.SSLException;
 import java.io.*;
 import java.net.NoRouteToHostException;
@@ -20,7 +21,7 @@ public class ImageParser {
 
             String[] parsedLinks = new String[10];
             int i = 0;
-            for (Element link : links){
+            for (Element link : links) {
                 parsedLinks[i] = link.attr("href");
                 i++;
             }
@@ -34,8 +35,7 @@ public class ImageParser {
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             byte[] buf = new byte[1024];
             int n;
-            while (-1!=(n=in.read(buf)))
-            {
+            while (-1 != (n = in.read(buf))) {
                 out.write(buf, 0, n);
             }
             out.close();
@@ -43,7 +43,7 @@ public class ImageParser {
             byte[] response = out.toByteArray();
 
             String imageName = parsedLinks[1].substring(parsedLinks[1].indexOf("OHR") + 4, parsedLinks[1].indexOf("&") - 4);  //image name
-            
+
             //Set your own path here
             String imagePath = "D:\\Programs\\WallpaperChanger\\" + imageName + ".jpg";
 
@@ -53,11 +53,11 @@ public class ImageParser {
 
             WallpaperChanger.changeWallpaper(imagePath);
 
-        } catch (SSLException ssl){
+        } catch (SSLException ssl) {
             System.out.println("SSLException occurred");
             Thread.sleep(10000);
             parseImage();
-        } catch (NoRouteToHostException no){
+        } catch (NoRouteToHostException no) {
             System.out.println("NoRouteToHostException occurred");
             Thread.sleep(10000);
             parseImage();
@@ -65,23 +65,24 @@ public class ImageParser {
             System.out.println("UnknownHostException occurred");
             Thread.sleep(10000);
             parseImage();
-        } catch (IOException ex){
+        } catch (IOException ex) {
             System.out.println("IOException occurred");
             Thread.sleep(10000);
             parseImage();
         }
     }
 
-    static void parseTitle(){
-        Document doc = null;
+    static void parseTitle() throws InterruptedException {
         try {
-            doc = Jsoup.connect("https://www.bing.com").get();
+            Document doc;
 
-            Elements links = doc.select("head").select("link");
+            doc = Jsoup.connect("https://www.bing.com").get();
 
             title = doc.getElementsByClass("title").text();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("IOException occurred");
+            Thread.sleep(10000);
+            parseTitle();
         }
     }
 }

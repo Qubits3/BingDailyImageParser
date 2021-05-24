@@ -74,7 +74,7 @@ public class Background {
 //        System.exit(1);
     }
 
-    static void showTitle() {
+    static void showTitle() throws InterruptedException {
         ImageParser.parseTitle();
 
         jDialog = new JDialog();
