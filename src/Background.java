@@ -90,6 +90,7 @@ public class Background {
         jTextArea.setBackground(Color.BLACK);
         jTextArea.setForeground(Color.WHITE);
         jTextArea.setEditable(false);
+        jTextArea.setHighlighter(null);     // Make the text non-selectable
         jTextArea.setText(" " + ImageParser.title + " ");
 
         jTextArea.addMouseListener(new MouseAdapter() {
